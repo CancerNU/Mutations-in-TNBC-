@@ -1,5 +1,9 @@
 # Mutations-in-TNBC-
 
+# Project Summary
+Triple-negative breast cancer (TNBC) is an aggressive subtype that frequently develops resistance to chemotherapy. An unresolved question is whether resistance is caused by the selection of rare pre-existing clones or alternatively through the acquisition of new genomic aberrations. The aim of this project is to compare variants in tumour samples before and after chemotherapy. In order to identify tissue-specific variants and exclude germline mutations, we attempted to compare blood and tumour samples.
+
+
 # Files in the project:
 1. Commands TNBC (including useful resources used)
 2. FASTQ quality report (multiqc_report 2)
