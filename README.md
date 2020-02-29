@@ -7,10 +7,13 @@ Triple-negative breast cancer (TNBC) is an aggressive subtype that frequently de
 # Files in the project:
 1. Project flowchart
 2. Commands TNBC (including useful resources used)
-3. FASTQ quality report (multiqc_report 2)
+3. FASTQ quality report (PreT)
+4. FASTQ quality report (PostT)
+5. FASTQ quality report of both (multiqc_report 2)
 4. Visualization of Pre_sorted_indexed by samtools
 5. VCF stats for Pretreatment sample (VCF stats)
 6. VCF stats for Posttreatment sample (post_stats)
+7. Report TNBC
 
 # URLs used for samples and reference
 Project is SRP114962 
