@@ -1,0 +1,45 @@
+##download of ref
+ wget ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
+
+# unzip 
+ gunzip Homo_sapiens.GRCh38.dna.toplevel.fa.gz
+
+
+# QC
+# mkdir -p ~/workdir/fqData && cd ~/workdir/fqData
+ copy and past of my data in this worhdir
+# conda install -c bioconda fastqc 
+# conda install -c bioconda multiqc 
+# mkdir -p ~/workdir/FASTQC_tut && cd ~/workdir/FASTQC_tut
+# fastqc -h > fastqc_hlp
+# for f in ~/workdir/fqData/*.fastq;do fastqc -t 1 -f fastq -noextract $f;done
+# multiqc -z -o . .
+
+## Alingment bwa 
+# conda activate ngs1
+# conda install -c bioconda -y bwa
+# mkdir -p ~/workdir/bwa_align/bwaIndex && cd ~/workdir/bwa_align/bwaIndex
+  ln -s ~/workdir/sample_data/Homo_sapiens.GRCh38.dna.chromosome.10.fa .
+# bwa index -a bwtsw Homo_sapiens.GRCh38.dna.chromosome.10.fa
+# cd ~/workdir/bwa_align
+# R1="$HOME/workdir/fqData/SRR5969460.fastq"
+# /usr/bin/time -v bwa mem bwaIndex/Homo_sapiens.GRCh38.dna.chromosome.10.fa $R1 $R2 > align.sam
+
+## Visualize mapping
+# conda install samtools
+samtools view -hbo align.bam align.sam
+samtools sort align.bam -o align.sorted.bam
+samtools index align.sorted.bam
+samtools tview -p chr10:62155107 align.sorted.bam bwaIndex/Homo_sapiens.GRCh38.dna.chromosome.10.fa
+
+### Call variants
+# conda install bcftools
+# bcftools mpileup -Ou -f bwaIndex/Homo_sapiens.GRCh38.dna.chromosome.10.fa align.sorted.bam |\
+ bcftools call -Ov -mv > SRR5969460.vcf
+# less SRR5969460.vcf
+### for statistic 
+# bgzip -c SRR5969460.vcf > SRR5969460.vcf.gz
+# tabix -p vcf SRR5969460.vcf.gz
+# conda install -c bioconda rtg-tools
+# rtg vcfstats SRR5969460.vcf.gz > post_stats.txt
+ 
