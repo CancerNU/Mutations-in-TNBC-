@@ -1,7 +1,7 @@
 # Mutations-in-TNBC-
 
 # Files in the project:
-1. Commands TNBC
+1. Commands TNBC (including useful resources used)
 2. FASTQ quality report (multiqc_report 2)
 3. Visualization of Pre_sorted_indexed by samtools
 4. VCF stats for Pretreatment sample (VCF stats)
